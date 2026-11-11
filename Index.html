@@ -1,0 +1,725 @@
+```html
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RuFixLab — Профессиональный ремонт компьютеров и ноутбуков</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#0f172a',
+                        },
+                        accent: '#06b6d4',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 glass-card border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-white">RuFix<span class="gradient-text">Lab</span></span>
+                    <span class="block text-xs text-gray-400 font-medium">Сервисный лаб-центр</span>
+                </div>
+            </div>
+
+            <!-- Navigation Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#services" class="hover:text-brand-500 transition-colors">Услуги</a>
+                <a href="#calculator" class="hover:text-brand-500 transition-colors">Калькулятор</a>
+                <a href="#request" class="hover:text-brand-500 transition-colors">Оформить заявку</a>
+                <a href="#reviews" class="hover:text-brand-500 transition-colors">Отзывы</a>
+                <a href="#contacts" class="hover:text-brand-500 transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Phone & Action Button -->
+            <div class="hidden lg:flex items-center space-x-6">
+                <div class="text-right">
+                    <a href="tel:+77053523395" class="text-sm font-bold text-white hover:text-brand-500 transition-colors flex items-center justify-end space-x-2">
+                        <i class="fa-solid fa-phone text-brand-500 text-xs"></i>
+                        <span>+7 (705) 352-33-95</span>
+                    </a>
+                    <a href="tel:+77785579134" class="text-xs text-gray-400 hover:text-white transition-colors block mt-0.5">
+                        +7 (778) 557-91-34
+                    </a>
+                    <span class="text-xs text-emerald-400 flex items-center justify-end space-x-1 mt-0.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Выезд за 30 минут</span>
+                    </span>
+                </div>
+                <a href="#request" class="gradient-bg text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:opacity-90 transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-0.5">
+                    Заказать ремонт
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white p-2 text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-gray-900/95 px-4 pt-4 pb-6 space-y-3">
+            <a href="#services" class="block text-gray-300 hover:text-white py-2 font-medium">Услуги</a>
+            <a href="#calculator" class="block text-gray-300 hover:text-white py-2 font-medium">Калькулятор стоимости</a>
+            <a href="#request" class="block text-gray-300 hover:text-white py-2 font-medium">Оформить заявку</a>
+            <a href="#reviews" class="block text-gray-300 hover:text-white py-2 font-medium">Отзывы</a>
+            <a href="#contacts" class="block text-gray-300 hover:text-white py-2 font-medium">Контакты</a>
+            <div class="pt-4 border-t border-gray-800 space-y-1">
+                <a href="tel:+77053523395" class="block font-bold text-white">+7 (705) 352-33-95</a>
+                <a href="tel:+77785579134" class="block text-sm text-gray-400">+7 (778) 557-91-34</a>
+                <a href="#request" class="block w-full text-center gradient-bg text-white py-3 rounded-xl font-semibold mt-3">Вызвать мастера</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 overflow-hidden">
+        <!-- Background Lighting Effects -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Side -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-brand-500 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-bolt text-yellow-400"></i>
+                        <span>Лабораторная точность & Экспресс-выезд</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Надежный ремонт <br class="hidden sm:inline">
+                        компьютеров от лаборатории <span class="gradient-text">RuFixLab</span>
+                    </h1>
+
+                    <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Экспресс-диагностика с выездом мастера или курьера. Восстанавливаем ПК и ноутбуки любой сложности с гарантией от 3 до 12 месяцев.
+                    </p>
+
+                    <!-- Advantages Pills -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 text-left">
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800">
+                            <i class="fa-solid fa-shield-halved text-brand-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Гарантия RuFix</h4>
+                                <p class="text-xs text-gray-400">От 3 до 12 месяцев</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800">
+                            <i class="fa-solid fa-truck-fast text-brand-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Выезд или Курьер</h4>
+                                <p class="text-xs text-gray-400">Бесплатно при ремонте</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 col-span-2 sm:col-span-1">
+                            <i class="fa-solid fa-calculator text-brand-500 text-xl"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">Прозрачные цены</h4>
+                                <p class="text-xs text-gray-400">Фиксация по прайсу</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Form Side (Hero Interactive Form) -->
+                <div class="lg:col-span-5">
+                    <div id="request" class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl relative border border-gray-800">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-white">Онлайн-заявка в RuFixLab</h3>
+                            <p class="text-xs text-gray-400 mt-1">Оставьте контакты и получите скидку 15% на первый ремонт</p>
+                        </div>
+
+                        <form id="heroRepairForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <!-- Name -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">Ваше имя *</label>
+                                <div class="relative">
+                                    <input type="text" required placeholder="Алексей" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all pl-10">
+                                    <i class="fa-regular fa-user absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">Телефон *</label>
+                                <div class="relative">
+                                    <input type="tel" required placeholder="+7 (705) 352-33-95" class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all pl-10">
+                                    <i class="fa-solid fa-phone absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                                </div>
+                            </div>
+
+                            <!-- Device Type Select -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">Устройство *</label>
+                                <div class="relative">
+                                    <select required class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-500 transition-all pl-10 appearance-none">
+                                        <option value="" disabled selected>Выберите тип техники</option>
+                                        <option value="laptop">Ноутбук</option>
+                                        <option value="pc">Стационарный ПК</option>
+                                        <option value="monoblock">Моноблок</option>
+                                        <option value="component">Отдельная деталь / Видеокарта</option>
+                                    </select>
+                                    <i class="fa-solid fa-laptop absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                                    <i class="fa-solid fa-chevron-down absolute right-3.5 top-4 text-gray-500 text-xs pointer-events-none"></i>
+                                </div>
+                            </div>
+
+                            <!-- Service Option -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">Способ обслуживания *</label>
+                                <div class="grid grid-cols-3 gap-2 text-xs">
+                                    <label class="cursor-pointer border border-gray-700 rounded-xl p-2.5 text-center bg-gray-900/80 hover:border-brand-500 transition-all has-[:checked]:border-brand-500 has-[:checked]:bg-brand-500/10">
+                                        <input type="radio" name="service_type" value="onsite" checked class="hidden">
+                                        <i class="fa-solid fa-user-gear block mb-1 text-brand-500"></i>
+                                        <span class="block text-[11px] text-gray-200">Выезд мастера</span>
+                                    </label>
+                                    <label class="cursor-pointer border border-gray-700 rounded-xl p-2.5 text-center bg-gray-900/80 hover:border-brand-500 transition-all has-[:checked]:border-brand-500 has-[:checked]:bg-brand-500/10">
+                                        <input type="radio" name="service_type" value="courier" class="hidden">
+                                        <i class="fa-solid fa-truck-ramp-box block mb-1 text-cyan-400"></i>
+                                        <span class="block text-[11px] text-gray-200">Забор курьером</span>
+                                    </label>
+                                    <label class="cursor-pointer border border-gray-700 rounded-xl p-2.5 text-center bg-gray-900/80 hover:border-brand-500 transition-all has-[:checked]:border-brand-500 has-[:checked]:bg-brand-500/10">
+                                        <input type="radio" name="service_type" value="inshop" class="hidden">
+                                        <i class="fa-solid fa-building-flag block mb-1 text-indigo-400"></i>
+                                        <span class="block text-[11px] text-gray-200">Привезу сам</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Problem description -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-300 mb-1.5">Описание проблемы</label>
+                                <textarea rows="2" placeholder="Не включается, греется, шумит, синий экран..." class="w-full bg-gray-900/90 border border-gray-700 rounded-xl px-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-all resize-none"></textarea>
+                            </div>
+
+                            <!-- Urgent repair checkbox -->
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="urgentCheck" class="w-4 h-4 rounded bg-gray-900 border-gray-700 text-brand-500 focus:ring-brand-500 focus:ring-offset-gray-900">
+                                <label for="urgentCheck" class="text-xs text-gray-300 cursor-pointer select-none">
+                                    Срочный ремонт (приоритет в очереди)
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="w-full gradient-bg text-white py-3.5 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center space-x-2 group">
+                                <span>Отправить заявку в RuFixLab</span>
+                                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+
+                            <p class="text-[11px] text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с условиями сервиса RuFixLab
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-16 bg-gray-950/60 border-t border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Популярные услуги по ремонту</h2>
+                <p class="text-gray-400 mt-2 text-sm sm:text-base">Качественные комплектующие, честные цены и фиксированная гарантия</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Card 1 -->
+                <div class="glass-card rounded-2xl p-6 glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-brand-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Бесплатная диагностика</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Полный разбор и аппаратное тестирование компонентов при согласии на проведение работ.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex justify-between items-center text-xs">
+                        <span class="text-emerald-400 font-semibold">0 ₸ (При ремонте)</span>
+                        <span class="text-gray-400">~ 15-30 минут</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="glass-card rounded-2xl p-6 glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-accent flex items-center justify-center text-xl mb-4">
+                            <i class="fa-brands fa-windows"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Установка Windows / macOS</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Установка ОС, драйверов, базового пакета программ и антивирусной защиты.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">от 8 000 ₸</span>
+                        <span class="text-gray-400">~ 40-60 минут</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="glass-card rounded-2xl p-6 glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-fan"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Чистка от пыли и замена термопасты</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Устранение перегрева, шума кулеров, замена термопрокладок на качественные материалы.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">от 8 000 ₸</span>
+                        <span class="text-gray-400">~ 30-45 минут</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="glass-card rounded-2xl p-6 glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-memory"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Апгрейд и замена деталей</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Установка SSD дисков, расширение ОЗУ, замена видеокарт и блоков питания.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">от 5 000 ₸</span>
+                        <span class="text-gray-400">~ от 20 минут</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="glass-card rounded-2xl p-6 glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-droplet-slash"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Чистка после залития</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Ультразвуковая отмывка платы от коррозии, восстановление поврежденных дорожек.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">от 10 000 ₸</span>
+                        <span class="text-gray-400">~ 1-2 дня</span>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="glass-card rounded-2xl p-6 glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-display"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Замена матриц и экранов</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Быстрая замена битых экранов ноутбуков любых брендов с оригинальными матрицами.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex justify-between items-center text-xs">
+                        <span class="text-white font-bold">от 5 000 ₸ (без деталей)</span>
+                        <span class="text-gray-400">~ 45 минут</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Estimator Calculator Widget -->
+    <section id="calculator" class="py-16 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-gray-800 relative">
+                <div class="text-center max-w-xl mx-auto mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Калькулятор стоимости</h2>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-1">Рассчитайте примерную стоимость ремонта онлайн за пару кликов</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Step 1: Device Type -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">1. Выберите тип устройства</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button type="button" onclick="selectCalcDevice(this, 'laptop', 1.0)" class="calc-device-btn active p-3 rounded-xl bg-gray-900 border-2 border-brand-500 text-center text-xs font-semibold text-white transition-all flex flex-col items-center space-y-2">
+                                <i class="fa-solid fa-laptop text-lg text-brand-500"></i>
+                                <span>Ноутбук</span>
+                            </button>
+                            <button type="button" onclick="selectCalcDevice(this, 'pc', 1.0)" class="calc-device-btn p-3 rounded-xl bg-gray-900 border border-gray-800 text-center text-xs font-semibold text-gray-300 hover:border-gray-700 transition-all flex flex-col items-center space-y-2">
+                                <i class="fa-solid fa-desktop text-lg text-gray-400"></i>
+                                <span>ПК / Системный блок</span>
+                            </button>
+                            <button type="button" onclick="selectCalcDevice(this, 'monoblock', 1.2)" class="calc-device-btn p-3 rounded-xl bg-gray-900 border border-gray-800 text-center text-xs font-semibold text-gray-300 hover:border-gray-700 transition-all flex flex-col items-center space-y-2">
+                                <i class="fa-solid fa-tv text-lg text-gray-400"></i>
+                                <span>Моноблок</span>
+                            </button>
+                            <button type="button" onclick="selectCalcDevice(this, 'custom', 1.1)" class="calc-device-btn p-3 rounded-xl bg-gray-900 border border-gray-800 text-center text-xs font-semibold text-gray-300 hover:border-gray-700 transition-all flex flex-col items-center space-y-2">
+                                <i class="fa-solid fa-screwdriver-wrench text-lg text-gray-400"></i>
+                                <span>Сборка ПК</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Select Services -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">2. Отметьте необходимые услуги</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-gray-900/60 border border-gray-800 cursor-pointer hover:border-gray-700 transition-all">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" value="8000" onchange="calculateTotal()" class="calc-service-check w-4 h-4 rounded bg-gray-900 border-gray-700 text-brand-500 focus:ring-brand-500">
+                                    <span class="text-xs sm:text-sm text-gray-200">Установка / переустановка ПО и Windows</span>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-400">+ 8 000 ₸</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-gray-900/60 border border-gray-800 cursor-pointer hover:border-gray-700 transition-all">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" value="8000" onchange="calculateTotal()" class="calc-service-check w-4 h-4 rounded bg-gray-900 border-gray-700 text-brand-500 focus:ring-brand-500" checked>
+                                    <span class="text-xs sm:text-sm text-gray-200">Профилактика: чистка от пыли + замена термопасты</span>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-400">+ 8 000 ₸</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-gray-900/60 border border-gray-800 cursor-pointer hover:border-gray-700 transition-all">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" value="5000" onchange="calculateTotal()" class="calc-service-check w-4 h-4 rounded bg-gray-900 border-gray-700 text-brand-500 focus:ring-brand-500">
+                                    <span class="text-xs sm:text-sm text-gray-200">Апгрейд и замена комплектующих</span>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-400">+ 5 000 ₸</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 rounded-xl bg-gray-900/60 border border-gray-800 cursor-pointer hover:border-gray-700 transition-all">
+                                <div class="flex items-center space-x-3">
+                                    <input type="checkbox" value="10000" onchange="calculateTotal()" class="calc-service-check w-4 h-4 rounded bg-gray-900 border-gray-700 text-brand-500 focus:ring-brand-500">
+                                    <span class="text-xs sm:text-sm text-gray-200">Чистка и восстановление после залития</span>
+                                </div>
+                                <span class="text-xs font-semibold text-gray-400">+ 10 000 ₸</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Output Area -->
+                    <div class="mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-gray-400 block">Ориентировочная стоимость:</span>
+                            <div class="text-2xl sm:text-3xl font-extrabold gradient-text" id="totalPriceDisplay">8 000 ₸</div>
+                        </div>
+                        <a href="#request" class="w-full sm:w-auto gradient-bg text-white px-6 py-3 rounded-xl font-bold text-sm text-center shadow-lg shadow-blue-500/20 hover:opacity-90 transition-all">
+                            Зафиксировать цену
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 bg-gray-950/40 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Отзывы клиентов</h2>
+                <p class="text-xs sm:text-sm text-gray-400 mt-2">Нам доверяют ремонт своей техники более 1 500 пользователей в год</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-card rounded-2xl p-6 border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 text-xs mb-3 space-x-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+                            «Ноутбук начал сильно гудеть и выключаться во время работы. Мастер приехал через 40 минут, почистил от пыли и заменил термопасту прямо при мне. Теперь работает тихо и быстро!»
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-gray-800">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs text-white">
+                            АП
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-white">Арман П.</h4>
+                            <span class="text-[10px] text-gray-500">Ремонт ноутбука ASUS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-card rounded-2xl p-6 border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 text-xs mb-3 space-x-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+                            «Собрали игровой ПК из моих деталей. Сделали аккуратный кабель-менеджмент, накатили Windows и все драйверы. Очень доволен сервисом, рекомендую!»
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-gray-800">
+                        <div class="w-8 h-8 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white">
+                            ЕК
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-white">Елена К.</h4>
+                            <span class="text-[10px] text-gray-500">Сборка игрового ПК</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-card rounded-2xl p-6 border border-gray-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-yellow-400 text-xs mb-3 space-x-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+                            «После пролитого кофе макбук перестать включаться. Ребята оперативно провели чистку в ультразвуковой ванне и восстановили плату. Спасли мои рабочие данные!»
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-gray-800">
+                        <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white">
+                            ДМ
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-white">Дмитрий М.</h4>
+                            <span class="text-[10px] text-gray-500">Восстановление MacBook</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section id="contacts" class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- Info Side -->
+                <div class="space-y-6">
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Контакты & Режим работы</h2>
+                    <p class="text-gray-400 text-xs sm:text-sm">Остались вопросы или хотите проконсультироваться? Мы всегда на связи!</p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-brand-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Время работы</h4>
+                                <p class="text-xs text-gray-400 mt-0.5">Пн-Вс: 09:00 — 21:00 (Без выходных)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-brand-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Телефоны для связи</h4>
+                                <p class="text-xs text-gray-400 mt-0.5">
+                                    <a href="tel:+77053523395" class="hover:text-white transition-colors">+7 (705) 352-33-95</a> (WhatsApp, Telegram)<br>
+                                    <a href="tel:+77785579134" class="hover:text-white transition-colors">+7 (778) 557-91-34</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Messenger Links -->
+                    <div class="pt-4 flex flex-wrap gap-3">
+                        <a href="https://wa.me/77053523395" target="_blank" class="inline-flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-semibold text-xs transition-all shadow-lg shadow-emerald-600/20">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="https://t.me/+77053523395" target="_blank" class="inline-flex items-center space-x-2 bg-sky-600 hover:bg-sky-500 text-white px-5 py-2.5 rounded-xl font-semibold text-xs transition-all shadow-lg shadow-sky-600/20">
+                            <i class="fa-brands fa-telegram text-base"></i>
+                            <span>Telegram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Location / Info Box Card -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 text-center relative overflow-hidden">
+                    <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto text-white text-2xl mb-4 shadow-xl shadow-blue-500/30">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Техническая поддержка RuFixLab</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm max-w-sm mx-auto mb-6">
+                        Наш сервисный инженер проконсультирует вас по всем вопросам диагностики и стоимости.
+                    </p>
+                    <a href="tel:+77053523395" class="inline-block bg-gray-900 border border-gray-700 hover:border-brand-500 text-white font-bold px-8 py-3.5 rounded-xl text-sm transition-all">
+                        Связаться с инженером
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-900 bg-gray-950 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <div class="flex items-center space-x-2">
+                <span class="text-sm font-bold text-white">RuFix<span class="gradient-text">Lab</span></span>
+                <span class="text-xs text-gray-500">© 2026 Лаборатория ремонта техники.</span>
+            </div>
+            <p class="text-xs text-gray-500 text-center sm:text-right">
+                Выезд мастера и диагностика при заказе услуг в RuFixLab — бесплатно.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Success Modal Window -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden px-4">
+        <div class="glass-card border border-emerald-500/30 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center relative transform transition-all scale-95 animate-fadeIn">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 border border-emerald-500/30">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Заявка принята!</h3>
+            <p class="text-gray-300 text-xs sm:text-sm mb-6 leading-relaxed">
+                Спасибо! Мы уже передали заявку свободному мастеру. Наш специалист свяжется с вами в течение 5 минут.
+            </p>
+            <button onclick="closeModal()" class="w-full gradient-bg text-white py-3 rounded-xl font-bold text-sm hover:opacity-90 transition-all">
+                Отлично
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form Submission Handling
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            e.target.reset();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('hidden');
+        }
+
+        // Calculator Logic
+        let currentMultiplier = 1.0;
+
+        function selectCalcDevice(element, deviceType, multiplier) {
+            // Remove active style from buttons
+            document.querySelectorAll('.calc-device-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-brand-500');
+                btn.classList.add('border-gray-800');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('text-brand-500');
+                    icon.classList.add('text-gray-400');
+                }
+            });
+
+            // Set active to clicked button
+            element.classList.add('active', 'border-brand-500');
+            element.classList.remove('border-gray-800');
+            const icon = element.querySelector('i');
+            if (icon) {
+                icon.classList.remove('text-gray-400');
+                icon.classList.add('text-brand-500');
+            }
+
+            currentMultiplier = multiplier;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('.calc-service-check');
+            
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    total += parseInt(cb.value);
+                }
+            });
+
+            const finalTotal = Math.round(total * currentMultiplier);
+            document.getElementById('totalPriceDisplay').innerText = finalTotal.toLocaleString('ru-RU') + ' ₸';
+        }
+    </script>
+</body>
+</html>
+```
